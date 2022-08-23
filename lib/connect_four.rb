@@ -1,5 +1,7 @@
 # lib/connect_four.rb
 
+require 'pry-byebug'
+
 # Notes
 # Connect Four board is 7 columns x 6 rows
 # Use unicode to display black or white checkers
@@ -13,7 +15,6 @@ class ConnectFourGame
 
     # for IRB @board = Array.new(6) { Array.new(7) }
   end
-
 
   # Basic player move method. Need a basic method in place before adding error checking
   # TODO: Use unicode to display black or white checkers
@@ -36,12 +37,18 @@ class ConnectFourGame
     output = ''
     @board.each { |row| output.concat("#{row.join(' | ')} \n") }
     output
-  end  
+  end
+
+  # return an array of all rows in a column, from top to bottom
+  def get_col(col_num)
+    @board.map { |row| row[col_num] }
+  end
 
 end
 
 
-# a_game = ConnectFourGame.new
-# a_game.print_board
-# a_game.player_move(0,0,1)
-# puts a_game.print_board
+ a_game = ConnectFourGame.new
+ a_game.print_board
+ a_game.player_move(0,0,1)
+ puts a_game.print_board
+ p a_game.get_col(0)
