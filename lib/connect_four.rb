@@ -14,13 +14,18 @@ class ConnectFourGame
     # for IRB @board = Array.new(6) { Array.new(7) }
   end
 
+  
+
+
+
+  private
   # return a string representation of the board
   # TODO: have column numbers at the bottom for aid in user input
   def print_board
     output = ''
     @board.each { |row| output.concat("#{row.join(' | ')} \n") }
     output
-  end
+  end  
 
 end
 
