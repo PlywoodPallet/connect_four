@@ -73,10 +73,18 @@ describe ConnectFourGame do
 
       xit 'returns nil when column is full' do
         col = 0
+        player_num = 1
         board = instance_variable_get(:@board)
+        board_num_rows = board.length
 
+        row = 0
+        until row == row.length do
+          game_verify.player_move(row, col, player_num)
+          row += 1
+        end
 
-
+        verified_input = game_verify.verify_input(col)
+        expect(verified_input).to eq(nil)
       end
     end
 
@@ -84,7 +92,11 @@ describe ConnectFourGame do
       subject(:game_verify) { described_class.new }
 
       xit 'returns nil' do 
+        board = instance_variable_get(:@board)
+        invalid_col = board[0].length
 
+        verified_input = game_verify.verify_input(invalid_col)
+        expect(verified_input).to eq(nil)
       end
     end
   end
