@@ -14,13 +14,24 @@ class ConnectFourGame
     # for IRB @board = Array.new(6) { Array.new(7) }
   end
 
-  
 
+  # Basic player move method. Need a basic method in place before adding error checking
+  # TODO: Use unicode to display black or white checkers
+  def player_move(row, col, player_num)
+    checker = ''
 
+    if player_num == 1
+      checker = 'X'
+    elsif player_num == 2
+      checker = 'O'
+    end
+    
+    @board[row][col] = checker
+  end
 
-  private
   # return a string representation of the board
   # TODO: have column numbers at the bottom for aid in user input
+  # TODO: cells with "nil" print with a blank space
   def print_board
     output = ''
     @board.each { |row| output.concat("#{row.join(' | ')} \n") }
@@ -30,5 +41,7 @@ class ConnectFourGame
 end
 
 
-a_game = ConnectFourGame.new
-a_game.print_board
+# a_game = ConnectFourGame.new
+# a_game.print_board
+# a_game.player_move(0,0,1)
+# puts a_game.print_board
