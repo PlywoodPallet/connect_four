@@ -37,6 +37,11 @@ class ConnectFourGame
     @board[row][col] = checker
   end
 
+  # Error checking method. Return col if col exists and has an empty space for a checker. If col does not exist or is full of checkers, return nil
+  def verify_input(col)
+
+  end
+
   # return a string representation of the board
   # TODO: have column numbers at the bottom for aid in user input
   # TODO: cells with "nil" print with a blank space
