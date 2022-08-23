@@ -43,19 +43,29 @@ describe ConnectFourGame do
     context 'when the board is empty' do
       subject(:game_verify) { described_class.new }
 
-      xit 'returns valid input when given valid column' do
-
+      it 'returns valid input when given empty column' do
+        col = 0
+        verified_input = game_verify.verify_input(col)
+        expect(verified_input).to eq(0)
       end
 
     end
 
     context 'when a particular column is full' do
+      subject(:game_verify) { described_class.new }
+
       xit 'returns nil when column is full' do
+        col = 0
+        board = instance_variable_get(:@board)
+
+
 
       end
     end
 
     context 'when given an invalid column that is off the board' do
+      subject(:game_verify) { described_class.new }
+
       xit 'returns nil' do 
 
       end
