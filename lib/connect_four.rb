@@ -12,6 +12,8 @@ class ConnectFourGame
 
   def initialize(row = 6, col = 7)
     @board = Array.new(row) { Array.new(col) }
+    # @player1_checker = 
+    # @player2_checker =
 
     # for IRB @board = Array.new(6) { Array.new(7) }
   end

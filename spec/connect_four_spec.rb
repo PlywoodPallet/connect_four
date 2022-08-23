@@ -49,7 +49,6 @@ describe ConnectFourGame do
 
       expect(first_column).to eq(expected_result)
     end
-
   end
   
   # Purpose of this method
