@@ -33,6 +33,24 @@ describe ConnectFourGame do
     end
   end
   
+  # assume default game board, 6 row x 7 col 
+  describe "#get_col" do
+    subject(:game_column) { described_class.new }
+
+    it 'returns all rows in a column, from top to bottom' do
+      row = 0
+      col = 0
+      player_num = 1
+      
+      game_column.player_move(row, col, player_num)
+
+      first_column = game_column.get_col(col)
+      expected_result = ['X', nil, nil, nil, nil, nil]
+
+      expect(first_column).to eq(expected_result)
+    end
+
+  end
   
   # Purpose of this method
   # Determine if the input column number is a valid number on the board
@@ -43,7 +61,7 @@ describe ConnectFourGame do
     context 'when the board is empty' do
       subject(:game_verify) { described_class.new }
 
-      it 'returns valid input when given empty column' do
+      xit 'returns valid input when given empty column' do
         col = 0
         verified_input = game_verify.verify_input(col)
         expect(verified_input).to eq(0)
