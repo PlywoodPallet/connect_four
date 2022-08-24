@@ -35,7 +35,7 @@ class ConnectFourGame
     player_turn(@active_player)
 
 
-    
+
     # switch between player 1 and player 2
     if @active_player == 1
       @active_player = 2
@@ -69,7 +69,7 @@ class ConnectFourGame
     gets.chomp
   end
 
-  # Basic player move method. Need a basic method in place before adding error checking
+  # Directly mark the board with player checker, without error checking
   # TODO: Use unicode to display black or white checkers
   def mark_board(row, col, player_num)
     checker = ''
