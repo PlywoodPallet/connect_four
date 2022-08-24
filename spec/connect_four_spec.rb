@@ -57,14 +57,24 @@ describe ConnectFourGame do
   describe '#verify_input' do 
     
 
-    context 'when the board is empty' do
+    context 'when the board is empty, returns valid input when given empty column' do
       subject(:game_verify) { described_class.new }
 
-      it 'returns valid input when given empty column' do
-        col = 0
-        verified_input = game_verify.verify_input(col)
-        expect(verified_input).to eq(0)
+      it 'when input is the first column (default = 0)' do
+        min_col = 0
+
+        verified_input = game_verify.verify_input(min_col)
+        expect(verified_input).to eq(min_col)
       end
+
+      it 'when input is the last column (default = 6)' do
+        board = game_verify.instance_variable_get(:@board)
+        max_col = board[0].length - 1
+
+        verified_input = game_verify.verify_input(max_col)
+        expect(verified_input).to eq(max_col)
+      end
+
 
     end
 
