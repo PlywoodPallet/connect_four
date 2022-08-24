@@ -37,7 +37,7 @@ class ConnectFourGame
     @board[row][col] = checker
   end
 
-  # Error checking method. Return col if col exists and has an empty space for a checker. If col does not exist or is full of checkers, return nil
+  # Input checking method. Return col if col exists and has an empty space for a checker. If col does not exist or is full of checkers, return nil
   def verify_input(col)
 
   end
@@ -45,6 +45,7 @@ class ConnectFourGame
   # return a string representation of the board
   # TODO: have column numbers at the bottom for aid in user input
   # TODO: cells with "nil" print with a blank space
+  # TODO: try using Array#reduce here for practice
   def print_board
     output = ''
     @board.each { |row| output.concat("#{row.join(' | ')} \n") }
