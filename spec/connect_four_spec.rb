@@ -5,7 +5,7 @@ require_relative '../lib/connect_four.rb'
 describe ConnectFourGame do
 
   # Test a basic version of this method without error checking
-  describe '#player_move' do
+  describe '#mark_board' do
     subject(:game_move) { described_class.new }
 
     it 'Adds player 1 checker in specific cell' do 
@@ -13,7 +13,7 @@ describe ConnectFourGame do
       col = 0
       player_num = 1
       
-      game_move.player_move(row, col, player_num)
+      game_move.mark_board(row, col, player_num)
       board = game_move.instance_variable_get(:@board)
       cell = board[row][col]
 
@@ -25,7 +25,7 @@ describe ConnectFourGame do
       col = 0
       player_num = 2
       
-      game_move.player_move(row, col, player_num)
+      game_move.mark_board(row, col, player_num)
       board = game_move.instance_variable_get(:@board)
       cell = board[row][col]
 
@@ -42,7 +42,7 @@ describe ConnectFourGame do
       col = 0
       player_num = 1
       
-      game_column.player_move(row, col, player_num)
+      game_column.mark_board(row, col, player_num)
 
       first_column = game_column.get_col(col)
       expected_result = ['X', nil, nil, nil, nil, nil]
@@ -79,7 +79,7 @@ describe ConnectFourGame do
 
         row = 0
         until row == board_num_rows do
-          game_verify.player_move(row, col, player_num)
+          game_verify.mark_board(row, col, player_num)
           row += 1
         end
 

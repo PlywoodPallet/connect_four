@@ -25,7 +25,7 @@ class ConnectFourGame
 
   # Basic player move method. Need a basic method in place before adding error checking
   # TODO: Use unicode to display black or white checkers
-  def player_move(row, col, player_num)
+  def mark_board(row, col, player_num)
     checker = ''
 
     if player_num == 1
