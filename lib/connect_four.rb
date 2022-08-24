@@ -5,7 +5,7 @@ require 'pry-byebug'
 # Notes
 # Connect Four board is 7 columns x 6 rows
 # Use unicode to display black or white checkers
-# use TDD-friendly game design from ruby_exercises 14-15
+# use TDD-friendly game design from ruby_exercises 13-15
 # user input is only a column number (1-7)
 
 class ConnectFourGame
