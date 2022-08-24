@@ -38,8 +38,17 @@ class ConnectFourGame
   end
 
   # Input checking method. Return col if col exists and has an empty space for a checker. If col does not exist or is full of checkers, return nil
-  def verify_input(col)
+  def verify_input(col)    
+    max_col_index = @board[0].length-1
+    col_array = get_col(col)
 
+    # check if col exists on board
+    return nil if col > max_col_index
+
+    # check if col is full of checkers
+    return nil if col_array.none? { |cell| cell.nil? }
+
+    col
   end
 
   # return a string representation of the board
@@ -60,8 +69,8 @@ class ConnectFourGame
 end
 
 
- a_game = ConnectFourGame.new
- a_game.print_board
- a_game.player_move(0,0,1)
- puts a_game.print_board
- p a_game.get_col(0)
+#  a_game = ConnectFourGame.new
+#  a_game.print_board
+#  a_game.player_move(0,0,1)
+#  puts a_game.print_board
+#  p a_game.get_col(0)
