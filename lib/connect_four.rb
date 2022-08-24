@@ -69,6 +69,11 @@ class ConnectFourGame
     gets.chomp
   end
 
+  # Add a checker to a valid column
+  def player_move(verified_col, player_num)
+
+  end
+
   # Directly mark the board with player checker, without error checking
   # TODO: Use unicode to display black or white checkers
   def mark_board(row, col, player_num)
@@ -115,8 +120,8 @@ class ConnectFourGame
 end
 
 
-# a_game = ConnectFourGame.new
-# a_game.print_board
-# a_game.player_move(0,0,1)
-# puts a_game.print_board
-# p a_game.get_col(0)
+a_game = ConnectFourGame.new
+a_game.print_board
+a_game.mark_board(0,0,1)
+puts a_game.print_board
+p a_game.get_col(0)
