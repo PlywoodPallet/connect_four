@@ -60,7 +60,7 @@ describe ConnectFourGame do
     context 'when the board is empty' do
       subject(:game_verify) { described_class.new }
 
-      xit 'returns valid input when given empty column' do
+      it 'returns valid input when given empty column' do
         col = 0
         verified_input = game_verify.verify_input(col)
         expect(verified_input).to eq(0)
@@ -71,14 +71,14 @@ describe ConnectFourGame do
     context 'when a particular column is full' do
       subject(:game_verify) { described_class.new }
 
-      xit 'returns nil when column is full' do
+      it 'returns nil when column is full' do
         col = 0
         player_num = 1
-        board = instance_variable_get(:@board)
+        board = game_verify.instance_variable_get(:@board)
         board_num_rows = board.length
 
         row = 0
-        until row == row.length do
+        until row == board_num_rows do
           game_verify.player_move(row, col, player_num)
           row += 1
         end
@@ -91,8 +91,8 @@ describe ConnectFourGame do
     context 'when given an invalid column that is off the board' do
       subject(:game_verify) { described_class.new }
 
-      xit 'returns nil' do 
-        board = instance_variable_get(:@board)
+      it 'returns nil' do 
+        board = game_verify.instance_variable_get(:@board)
         invalid_col = board[0].length
 
         verified_input = game_verify.verify_input(invalid_col)

@@ -38,8 +38,8 @@ class ConnectFourGame
   end
 
   # Input checking method. Return col if col exists and has an empty space for a checker. If col does not exist or is full of checkers, return nil
-  def verify_input(col)    
-    max_col_index = @board[0].length-1
+  def verify_input(col)
+    max_col_index = @board[0].length - 1
     col_array = get_col(col)
 
     # check if col exists on board
