@@ -11,7 +11,9 @@ require 'pry-byebug'
 class ConnectFourGame
 
   def initialize(row = 6, col = 7)
+    # NOTE: row array goes from "top" to "bottom". Col array goes from "left" to "right"
     @board = Array.new(row) { Array.new(col) }
+
     @active_player = 1
     # @player1_checker = 
     # @player2_checker =
@@ -31,18 +33,17 @@ class ConnectFourGame
 
   # Number of players (2) is hard coded
   def turn_order
-
     player_turn(@active_player)
+    toggle_active_player
+  end
 
-
-
-    # switch between player 1 and player 2
+  # Switch the active player between 1 and 2
+  def toggle_active_player
     if @active_player == 1
       @active_player = 2
     else
       @active_player = 1
     end
-
   end
 
   # Is it easy to read this method and understand what is happening?
