@@ -70,9 +70,21 @@ class ConnectFourGame
     gets.chomp
   end
 
-  # Add a checker to a valid column
+  # Add a checker to the bottom of a valid column
+  # Assume column has already been verified by #verify_input to be within the game board and contain an empty space to add a checker
+  # Note: "top" row is index 0
   def player_move(verified_col, player_num)
+    col_array = get_col(verified_col)
 
+    row = col_array.length - 1 # start with the end of array, the "bottom" of the column  (the "last" row)
+
+    until row < 0 do
+      if col_array[row].nil?
+        mark_board(row, verified_col, player_num)
+        break
+      end
+      row -= 1
+    end
   end
 
   # Directly mark the board with player checker, without error checking
