@@ -4,17 +4,77 @@ require_relative '../lib/connect_four.rb'
 
 describe ConnectFourGame do
 
+  describe "#player_move" do
+  context 'When the column is empty' do
+    subject(:game_move) { described_class.new }
+    it 'Adds player 1 checker correctly' do
+      col = 0
+      player_num = 1
+      
+      game_move.player_move(col, player_num)
+
+      first_column = game_column.get_col(col)
+      expected_result = [nil, nil, nil, nil, nil, 'X']
+
+      expect(first_column).to eq(expected_result)
+    end
+  end
+  
+  context 'When the column contains existing checkers and empty spaces' do 
+    subject(:game_move) { described_class.new }
+    col = 0
+
+    before do
+      game_move.player_move(col, player_num)
+    end
+
+    it 'Adds player 1 checker on the top of existing checkers' do
+      game_move.player_move(col, player_num)
+
+      first_column = game_column.get_col(col)
+      expected_result = [nil, nil, nil, nil, 'X', 'X']
+    end
+  end
+
+  context 'When the column is full of checkers' do
+    subject(:game_move) { described_class.new }
+
+    before do 
+      col = 0
+      player_num = 1
+      board = game_move.instance_variable_get(:@board)
+      board_num_rows = board.length
+
+      row = 0
+      until row == board_num_rows do
+        game_verify.mark_board(row, col, player_num)
+        row += 1
+      end
+    end
+  
+    # placeholder error message
+    it 'Returns error when adding player 1 checker into a full column' do
+      col = 0
+      player_num = 1
+      game_move.player_move(col, player_num)
+
+      error_message = 'ERROR'
+      expect(game_move).to receive(:puts).with(error_message)
+    end
+  end
+
+
   # Test a basic version of this method without error checking
   describe '#mark_board' do
-    subject(:game_move) { described_class.new }
+    subject(:game_mark) { described_class.new }
 
     it 'Adds player 1 checker in specific cell' do 
       row = 0
       col = 0
       player_num = 1
       
-      game_move.mark_board(row, col, player_num)
-      board = game_move.instance_variable_get(:@board)
+      game_mark.mark_board(row, col, player_num)
+      board = game_mark.instance_variable_get(:@board)
       cell = board[row][col]
 
       expect(cell).to eq('X')
@@ -25,8 +85,8 @@ describe ConnectFourGame do
       col = 0
       player_num = 2
       
-      game_move.mark_board(row, col, player_num)
-      board = game_move.instance_variable_get(:@board)
+      game_mark.mark_board(row, col, player_num)
+      board = game_mark.instance_variable_get(:@board)
       cell = board[row][col]
 
       expect(cell).to eq('O')
