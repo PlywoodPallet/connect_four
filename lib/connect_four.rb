@@ -48,26 +48,22 @@ class ConnectFourGame
 
   # Is it easy to read this method and understand what is happening?
   def player_turn(player_num)
+    verified_col = ''
     loop do
       verified_col = verify_input(player_input(player_num))
-
-      # even if verified_col is nil, the loop will repeat until a valid input is entered
-      if player_num == 1
-        @player1_input = verified_col
-      else
-        @player2_input = verified_col
-      end
 
       break if verified_col # break if not nil
 
       puts 'Input Error!'
     end
+
+    player_move(verified_col, player_num)
   end
 
   # Accept player input
   def player_input(player_num)
     puts "Player #{player_num} enter move: "
-    gets.chomp
+    gets.chomp.to_i
   end
 
   # Add a checker to the bottom of a valid column
@@ -134,7 +130,6 @@ end
 
 
 a_game = ConnectFourGame.new
-a_game.print_board
-a_game.mark_board(0,0,1)
+# a_game.print_board
+a_game.player_turn(1)
 puts a_game.print_board
-p a_game.get_col(0)
