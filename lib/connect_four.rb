@@ -27,13 +27,15 @@ class ConnectFourGame
   # method stub
   def play_game
     puts 'Game instructions'
-    turn_order until game_over? # this doesn't work, has to wait for both players to finish before ending game
+    puts print_board
+    turn_order until game_over?
     puts 'Final message'
   end
 
   # Number of players (2) is hard coded
   def turn_order
     player_turn(@active_player)
+    puts print_board
     toggle_active_player
   end
 
@@ -98,6 +100,7 @@ class ConnectFourGame
   end
 
   # Input checking method. Return col if col exists and has an empty space for a checker. If col does not exist or is full of checkers, return nil
+  # TODO: return nil if input is not a number
   def verify_input(col)
     max_col_index = @board[0].length - 1
     col_array = get_col(col)
@@ -126,10 +129,14 @@ class ConnectFourGame
     @board.map { |row| row[col_num] }
   end
 
+  # method stub
+  def game_over?
+    false
+  end
+
 end
 
 
 a_game = ConnectFourGame.new
 # a_game.print_board
-a_game.player_turn(1)
-puts a_game.print_board
+a_game.play_game
