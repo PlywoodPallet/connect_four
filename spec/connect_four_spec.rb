@@ -4,6 +4,89 @@ require_relative '../lib/connect_four.rb'
 
 describe ConnectFourGame do
 
+  # check if four checkers of one player is found
+  # horizontal, vertical, diagonal (left and right)
+  describe "#game_over?" do
+
+    context 'when four checkers are horizontal' do
+    subject(:game) { described_class.new }
+      before do
+        row = 0
+        game.mark_board(row, 0, 1)
+        game.mark_board(row, 1, 1)
+        game.mark_board(row, 2, 1)
+        game.mark_board(row, 3, 1)
+      end
+      xit 'game_over? is true' do
+        expect(game).to be_game_over
+      end
+    end
+
+    context 'when four checkers are vertical' do
+    subject(:game) { described_class.new }
+      before do
+        col = 0
+        game.mark_board(5, col, 1)
+        game.mark_board(4, col, 1)
+        game.mark_board(3, col, 1)
+        game.mark_board(2, col, 1)
+      end
+      xit 'game_over? is true' do
+        expect(game).to be_game_over
+      end
+    end
+
+    context 'when four checkers are diagonal (1)' do
+    subject(:game) { described_class.new }
+      before do
+        game.mark_board(5, 0, 1)
+        game.mark_board(4, 1, 1)
+        game.mark_board(3, 2, 1)
+        game.mark_board(2, 3, 1)
+      end
+      xit 'game_over? is true' do
+        expect(game).to be_game_over
+      end
+    end
+
+    context 'when four checkers are diagonal (2)' do
+    subject(:game) { described_class.new }
+      before do
+        game.mark_board(2, 0, 1)
+        game.mark_board(3, 1, 1)
+        game.mark_board(4, 2, 1)
+        game.mark_board(5, 3, 1)
+      end
+      xit 'game_over? is true' do
+        expect(game).to be_game_over
+      end
+    end
+
+    context 'when there no four checkers in a row' do
+    subject(:game) { described_class.new }
+      before do
+        game.mark_board(3, 0, 1)
+        game.mark_board(4, 0, 1)
+        game.mark_board(5, 0, 1)
+        game.mark_board(2, 1, 1)
+        game.mark_board(3, 2, 1)
+        game.mark_board(4, 2, 1)
+        game.mark_board(5, 2, 1)
+        
+        game.mark_board(2, 0, 2)
+        game.mark_board(3, 1, 2)
+        game.mark_board(4, 1, 2)
+        game.mark_board(5, 1, 2)
+        game.mark_board(2, 2, 2)
+        game.mark_board(5, 3, 2)
+      end
+      xit 'game_over? is false' do
+        expect(game).to_not be_game_over
+      end
+    end
+  end
+
+
   describe "#player_move" do
     context 'When the column is empty' do
       subject(:game_move) { described_class.new }
