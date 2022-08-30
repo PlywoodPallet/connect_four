@@ -131,7 +131,13 @@ class ConnectFourGame
 
   # method stub
   def game_over?
-    false
+    # check horizontal (row) wins
+    @board.each { |row| return true if all_equal?(row) }
+  end
+
+  # Iterate over all consecutive 4-tuple combinations in array. Return true if 4 consecutive values are equal
+  def all_equal?(array)
+    array.each_cons(4).all? { |a, b, c, d| a == b && b == c && c == d }
   end
 
 end
