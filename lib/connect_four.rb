@@ -137,8 +137,8 @@ class ConnectFourGame
     # return true here may be redudant
     @board.each { |row| return true if all_equal?(row) }
 
-    # check horizontal (row) wins
-    @board.transpose.each { |col| return true if all_equal?(col) }
+    # check horizontal (row) wins (not working)
+    # @board.transpose.each { |col| return true if all_equal?(col) }
 
     false
   end
