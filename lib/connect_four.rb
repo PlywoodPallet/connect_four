@@ -132,20 +132,20 @@ class ConnectFourGame
   end
 
   # Return true if a player has won (4 in a row, col or diagonal)
+  # 'return true' for each block may be redudant
   def game_over?
     # check horizontal (row) wins
-    # return true here may be redudant
     @board.each { |row| return true if all_equal?(row) }
 
-    # check horizontal (row) wins (not working)
-    # @board.transpose.each { |col| return true if all_equal?(col) }
+    # check vertical (col) wins
+    @board.transpose.each { |col| return true if all_equal?(col) }
 
     false
   end
 
   # Iterate over all consecutive 4-tuple combinations in array. Return true and break search if 4 consecutive values are equal
   def all_equal?(array)
-    array.each_cons(4).all? do |a, b, c, d|
+    array.each_cons(4) do |a, b, c, d|
       # important to test that all values are not the default blank value
       return true if a == b && b == c && c == d && a != ' '
     end

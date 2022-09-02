@@ -31,7 +31,7 @@ describe ConnectFourGame do
         game.mark_board(3, col, 1)
         game.mark_board(2, col, 1)
       end
-      xit 'game_over? is true' do
+      it 'game_over? is true' do
         expect(game).to be_game_over
       end
     end
