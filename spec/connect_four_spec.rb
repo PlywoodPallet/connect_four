@@ -80,7 +80,7 @@ describe ConnectFourGame do
         game.mark_board(2, 2, 2)
         game.mark_board(5, 3, 2)
       end
-      xit 'game_over? is false' do
+      it 'game_over? is false' do
         expect(game).to_not be_game_over
       end
     end
@@ -97,7 +97,7 @@ describe ConnectFourGame do
         game_move.player_move(col, player_num)
 
         first_column = game_move.get_col(col)
-        expected_result = [nil, nil, nil, nil, nil, 'X']
+        expected_result = [' ', ' ', ' ', ' ', ' ', 'X']
 
         expect(first_column).to eq(expected_result)
       end
@@ -116,7 +116,7 @@ describe ConnectFourGame do
         game_move.player_move(col, player_num)
 
         first_column = game_move.get_col(col)
-        expected_result = [nil, nil, nil, nil, 'X', 'X']
+        expected_result = [' ', ' ', ' ', ' ', 'X', 'X']
       end
     end
 
@@ -190,7 +190,7 @@ describe ConnectFourGame do
       game_column.mark_board(row, col, player_num)
 
       first_column = game_column.get_col(col)
-      expected_result = ['X', nil, nil, nil, nil, nil]
+      expected_result = ['X', ' ', ' ', ' ', ' ', ' ']
 
       expect(first_column).to eq(expected_result)
     end
