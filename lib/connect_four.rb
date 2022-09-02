@@ -12,7 +12,8 @@ class ConnectFourGame
 
   def initialize(row = 6, col = 7)
     # NOTE: row array goes from "top" to "bottom". Col array goes from "left" to "right"
-    @board = Array.new(row) { Array.new(col) }
+    # Initialize default value as an empty space
+    @board = Array.new(row) { Array.new(col, ' ') }
 
     @active_player = 1
     # @player1_checker = 
@@ -74,10 +75,11 @@ class ConnectFourGame
   def player_move(verified_col, player_num)
     col_array = get_col(verified_col)
 
-    row = col_array.length - 1 # start with the end of array, the "bottom" of the column  (the "last" row)
 
+    # start with the end of array, the "bottom" of the column  (the "last" row)
+    row = col_array.length - 1 
     until row < 0 do
-      if col_array[row].nil?
+      if col_array[row] == ' '
         mark_board(row, verified_col, player_num)
         break
       end
@@ -109,7 +111,7 @@ class ConnectFourGame
     return nil if col > max_col_index
 
     # check if col is full of checkers
-    return nil if col_array.none? { |cell| cell.nil? }
+    return nil if col_array.none? { |cell| cell == ' ' }
 
     col
   end
@@ -129,15 +131,24 @@ class ConnectFourGame
     @board.map { |row| row[col_num] }
   end
 
-  # method stub
+  # Return true if a player has won (4 in a row, col or diagonal)
   def game_over?
     # check horizontal (row) wins
+    # return true here may be redudant
     @board.each { |row| return true if all_equal?(row) }
+
+    # check horizontal (row) wins
+    @board.transpose.each { |col| return true if all_equal?(col) }
+
+    false
   end
 
-  # Iterate over all consecutive 4-tuple combinations in array. Return true if 4 consecutive values are equal
+  # Iterate over all consecutive 4-tuple combinations in array. Return true and break search if 4 consecutive values are equal
   def all_equal?(array)
-    array.each_cons(4).all? { |a, b, c, d| a == b && b == c && c == d }
+    array.each_cons(4).all? do |a, b, c, d|
+      # important to test that all values are not the default blank value
+      return true if a == b && b == c && c == d && a != ' '
+    end
   end
 
 end
