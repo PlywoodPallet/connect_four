@@ -1,7 +1,6 @@
 # lib/connect_four.rb
 
 require 'pry-byebug'
-require 'matrix'
 
 # Notes
 # Connect Four board is 7 columns x 6 rows
