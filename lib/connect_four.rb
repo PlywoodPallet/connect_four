@@ -1,6 +1,7 @@
 # lib/connect_four.rb
 
 require 'pry-byebug'
+require 'matrix'
 
 # Notes
 # Connect Four board is 7 columns x 6 rows
@@ -143,7 +144,7 @@ class ConnectFourGame
     false
   end
 
-  # Iterate over all consecutive 4-tuple combinations in array. Return true and break search if 4 consecutive values are equal
+  # Iterate over all consecutive 4-tuple combinations in array. # Return true and break search if 4 consecutive values are equal
   def all_equal?(array)
     array.each_cons(4) do |a, b, c, d|
       # important to test that all values are not the default blank value
@@ -151,4 +152,53 @@ class ConnectFourGame
     end
   end
 
+  # return an array of all diagnonals that start in the top left and go to the bottom right
+  # all diagonals that start when col = 0 or row = 0
+  # working but needs a major refactor. Refactor into modular code that doesn't need to be repeated as much
+  def major_diagonalize
+    row_max = @board.length - 1
+    col_max = @board[0].length - 1
+
+    # find all major diagonals that start in the first (left-most) column, INCLUDING (0,0)
+    row = row_max # start at the bottom row
+    output = []
+    while row >= 0
+      diagonal = []
+      diagonal << @board[row][0]
+
+      i = row
+      j = 0 # "col"
+
+      # find all major diagonals starting at [row][col]
+      until @board[i+1].nil? || @board[i+1][j+1].nil?
+        diagonal << @board[i+1][j+1]
+        i += 1
+        j += 1
+      end
+
+      row -= 1
+      # output << diagonal
+    end
+
+    # find all major diagonals that start in the first row EXCLUDING (0,0)
+    col = 1
+    while col <= col_max
+      diagonal = []
+      diagonal << @board[0][col]
+
+      i = 0 # "row"
+      j = col
+
+      until @board[i+1].nil? || @board[i+1][j+1].nil?
+        diagonal << @board[i+1][j+1]
+        i += 1
+        j += 1
+      end
+
+      col += 1
+      output << diagonal
+    end
+
+    output
+  end
 end
