@@ -63,7 +63,8 @@ describe ConnectFourGame do
     end
 
 
-
+    # TODO: to test this correctly, I should fill the entire board
+    # with a draw game
     context 'when there no four checkers in a row' do
     subject(:game) { described_class.new }
       before do
