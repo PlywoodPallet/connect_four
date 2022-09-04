@@ -148,8 +148,7 @@ class ConnectFourGame
     @board.transpose.each { |col| return true if four_equal?(col) }
 
     # check major diagonal wins
-    major_diagonals = major_diagonalize
-
+    major_diagonalize.each { |major_diagonal| return true if four_equal?(major_diagonal) }
 
     false
   end

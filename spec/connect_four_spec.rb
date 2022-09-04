@@ -36,7 +36,20 @@ describe ConnectFourGame do
       end
     end
 
-    context 'when four checkers are diagonal (1)' do
+    context 'when four checkers are in major diagonal (descending)' do
+      subject(:game) { described_class.new }
+        before do
+          game.mark_board(2, 0, 1)
+          game.mark_board(3, 1, 1)
+          game.mark_board(4, 2, 1)
+          game.mark_board(5, 3, 1)
+        end
+        it 'game_over? is true' do
+          expect(game).to be_game_over
+        end
+      end
+
+    context 'when four checkers are in minor diagonal (ascending)' do
     subject(:game) { described_class.new }
       before do
         game.mark_board(5, 0, 1)
@@ -49,18 +62,7 @@ describe ConnectFourGame do
       end
     end
 
-    context 'when four checkers are diagonal (2)' do
-    subject(:game) { described_class.new }
-      before do
-        game.mark_board(2, 0, 1)
-        game.mark_board(3, 1, 1)
-        game.mark_board(4, 2, 1)
-        game.mark_board(5, 3, 1)
-      end
-      xit 'game_over? is true' do
-        expect(game).to be_game_over
-      end
-    end
+
 
     context 'when there no four checkers in a row' do
     subject(:game) { described_class.new }

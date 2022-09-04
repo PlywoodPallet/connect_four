@@ -26,6 +26,9 @@ game.player_move(5,2)
 game.player_move(4,2)
 game.player_move(6,2)
 
+# winning move
+game.player_move(3, 1)
+
 puts game.print_board
 
-game.game_over?
+p game.game_over?
