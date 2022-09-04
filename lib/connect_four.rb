@@ -31,15 +31,25 @@ class ConnectFourGame
     # for IRB @board = Array.new(6) { Array.new(7) }
   end
 
-  # method stub
+  # Play connect four
   def play_game
-    puts 'Game instructions'
+    print_game_instructions
     print_board
+    # keep playing turns until the game is over
     turn_order until game_over?
+    print_final_message
+  end
+
+  def print_game_instructions
+    puts 'Game instructions'
+  end
+
+  # Print who won
+  def print_final_message
     puts 'Final message'
   end
 
-  # Number of players (2) is hard coded
+  # Order of each player turn
   def turn_order
     player_turn(@active_player)
     print_board
