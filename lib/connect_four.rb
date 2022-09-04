@@ -142,14 +142,9 @@ class ConnectFourGame
   # Label each column of the board for user input
   # TODO: columns labeled 1 to 7 for easy input (no column 0)
   def print_column_label
-    column_label = ''
     num_cols = @board[0].length - 1
-    (0..num_cols).each do |col_num|
-      column_label.concat("#{col_num}   ") # spaces needed here to align numbers with column
-    end
-    column_label.concat("\n")
-
-    puts column_label
+    column_numbers = (0..num_cols).to_a
+    puts(column_numbers.join('   ')) # space needed to align numbers under each column
   end
 
   # Return an array of all rows in a column, from top to bottom
