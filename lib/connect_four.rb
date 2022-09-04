@@ -155,49 +155,43 @@ class ConnectFourGame
   # all diagonals that start when col = 0 or row = 0
   # working but needs a major refactor. Refactor into modular code that doesn't need to be repeated as much
   def major_diagonalize
-    row_max = @board.length - 1
-    col_max = @board[0].length - 1
+    # generate array of initial coordinates (row, col)
+    # All coords of first col and first row
+    # manually enter [0,0] and ignore this coord in loops below
+    initial_coords = [[0, 0]]
 
-    # find all major diagonals that start in the first (left-most) column, INCLUDING (0,0)
-    row = row_max # start at the bottom row
-    output = []
-    while row >= 0
-      diagonal = []
-      diagonal << @board[row][0]
-
-      i = row
-      j = 0 # "col"
-
-      # find all major diagonals starting at [row][col]
-      until @board[i+1].nil? || @board[i+1][j+1].nil?
-        diagonal << @board[i+1][j+1]
-        i += 1
-        j += 1
-      end
-
-      row -= 1
-      # output << diagonal
+    # first column coordinates, col = 0
+    (1...@board.length).each do |row|
+      col = 0
+      initial_coords << [row, col]
     end
 
-    # find all major diagonals that start in the first row EXCLUDING (0,0)
-    col = 1
-    while col <= col_max
-      diagonal = []
-      diagonal << @board[0][col]
-
-      i = 0 # "row"
-      j = col
-
-      until @board[i+1].nil? || @board[i+1][j+1].nil?
-        diagonal << @board[i+1][j+1]
-        i += 1
-        j += 1
-      end
-
-      col += 1
-      output << diagonal
+    # first row coordinates (top row), row = 0
+    (1...@board[0].length).each do |col|
+      row = 0
+      initial_coords << [row, col]
     end
 
-    output
+    # find the major diagonal starting from all initial coordinates
+    major_diagonals = []
+    initial_coords.each do |row, col|
+      diagonal = []
+      diagonal << @board[row][col]
+
+      # keep "descending" down the 2d array as long as there is a value
+      until @board[row + 1].nil? || @board[row + 1][col + 1].nil?
+        diagonal << @board[row + 1][col + 1]
+        row += 1
+        col += 1
+      end
+
+      major_diagonals << diagonal
+    end
+
+    # only return major diagonals that have 4 or more values
+    major_diagonals.select { |diagonal| diagonal.length >= 4 }
   end
+
+
+
 end
