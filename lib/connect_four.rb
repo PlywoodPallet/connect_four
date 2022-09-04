@@ -133,23 +133,18 @@ class ConnectFourGame
   end
 
   # Print a string representation of the board
-  # TODO: have column numbers at the bottom for aid in user input
   def print_board
-    # TODO: try using Array#reduce here for practice
-    # TODO: remove the need for the output var
-    output = ''
-    @board.each { |row| output.concat("#{row.join(' | ')} \n") }
-    puts output
+    puts(@board.map { |row| row.join(' | ') })
 
     print_column_label
   end
 
   # Label each column of the board for user input
-  # Note: columns labeled 1 to 7 for easy input (no column 0)
+  # TODO: columns labeled 1 to 7 for easy input (no column 0)
   def print_column_label
     column_label = ''
-    num_cols = @board[0].length
-    (1..num_cols).each do |col_num|
+    num_cols = @board[0].length - 1
+    (0..num_cols).each do |col_num|
       column_label.concat("#{col_num}   ") # spaces needed here to align numbers with column
     end
     column_label.concat("\n")
