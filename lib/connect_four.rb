@@ -34,7 +34,7 @@ class ConnectFourGame
   # method stub
   def play_game
     puts 'Game instructions'
-    puts print_board
+    print_board
     turn_order until game_over?
     puts 'Final message'
   end
@@ -42,7 +42,7 @@ class ConnectFourGame
   # Number of players (2) is hard coded
   def turn_order
     player_turn(@active_player)
-    puts print_board
+    print_board
     toggle_active_player
   end
 
@@ -129,7 +129,7 @@ class ConnectFourGame
   def print_board
     output = ''
     @board.each { |row| output.concat("#{row.join(' | ')} \n") }
-    output
+    puts output
   end
 
   # return an array of all rows in a column, from top to bottom
