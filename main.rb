@@ -28,4 +28,4 @@ game.player_move(6,2)
 
 puts game.print_board
 
-p game.major_diagonalize
+game.game_over?

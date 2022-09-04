@@ -8,6 +8,12 @@ require 'pry-byebug'
 # use TDD-friendly game design from ruby_exercises 13-15
 # user input is only a column number (1-7)
 
+# Accomplishments
+# First project where it was coded in small modular pieces for the purpose of developing tests
+# Red-Green-Refactor practice for most methods
+# Rspec tests helped a lot when I later had to introduce a default value in @board that wasn't nil. Helped me catch bugs across many methods without needing to find them via trial and error
+# Wasn't able to google for a satisfactory algo to find the diagonals in a 2d array, so I developed my own. 
+
 class ConnectFourGame
 
   def initialize(row = 6, col = 7)
@@ -139,6 +145,10 @@ class ConnectFourGame
 
     # check vertical (col) wins
     @board.transpose.each { |col| return true if all_equal?(col) }
+
+    # check major diagonal wins
+      p major_diagonals = major_diagonalize
+
 
     false
   end
