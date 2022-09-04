@@ -150,6 +150,9 @@ class ConnectFourGame
     # check major diagonal wins
     major_diagonalize.each { |major_diagonal| return true if four_equal?(major_diagonal) }
 
+    # check minor diagonal wins
+    minor_diagonalize.each { |minor_diagonal| return true if four_equal?(minor_diagonal)}
+
     false
   end
 
@@ -161,23 +164,22 @@ class ConnectFourGame
     end
   end
 
-  # return an array of all diagnonals that start in the top left and go to the bottom right
-  # all diagonals that start when col = 0 or row = 0
-  # working but needs a major refactor. Refactor into modular code that doesn't need to be repeated as much
-  def major_diagonalize
+  # return an array of all diagonals that start in the top left and go to the bottom right
+  # only return diagonals that have 4 or more values
+  def major_diagonalize(array = @board)
     # generate array of initial coordinates (row, col)
     # All coords of first col and first row
     # manually enter [0,0] and ignore this coord in loops below
     initial_coords = [[0, 0]]
 
     # first column coordinates, col = 0
-    (1...@board.length).each do |row|
+    (1...array.length).each do |row|
       col = 0
       initial_coords << [row, col]
     end
 
     # first row coordinates (top row), row = 0
-    (1...@board[0].length).each do |col|
+    (1...array[0].length).each do |col|
       row = 0
       initial_coords << [row, col]
     end
@@ -186,11 +188,11 @@ class ConnectFourGame
     major_diagonals = []
     initial_coords.each do |row, col|
       diagonal = []
-      diagonal << @board[row][col]
+      diagonal << array[row][col]
 
       # keep "descending" down the 2d array as long as there is a value
-      until @board[row + 1].nil? || @board[row + 1][col + 1].nil?
-        diagonal << @board[row + 1][col + 1]
+      until array[row + 1].nil? || array[row + 1][col + 1].nil?
+        diagonal << array[row + 1][col + 1]
         row += 1
         col += 1
       end
@@ -200,6 +202,14 @@ class ConnectFourGame
 
     # only return major diagonals that have 4 or more values
     major_diagonals.select { |diagonal| diagonal.length >= 4 }
+  end
+
+  # return an array of diagonals that start in the bottom left and go to the top right, "ascending"
+  # only return diagonals that have 4 or more values
+  def minor_diagonalize
+    # reverse the rows only, keep the column order intact
+    reversed_board = @board.map { |row| row.reverse } 
+    major_diagonalize(reversed_board)
   end
 
 

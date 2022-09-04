@@ -31,4 +31,4 @@ game.player_move(3, 1)
 
 puts game.print_board
 
-p game.game_over?
+p game.minor_diagonalize
