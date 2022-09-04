@@ -138,23 +138,24 @@ class ConnectFourGame
   end
 
   # Return true if a player has won (4 in a row, col or diagonal)
-  # 'return true' for each block may be redudant
+  # Give an array of each row, col, etc to four_equal? to determine if there are 4 player checkers in a row 
+  # Note: 'return true' for each block may be redudant but here for clarity
   def game_over?
     # check horizontal (row) wins
-    @board.each { |row| return true if all_equal?(row) }
+    @board.each { |row| return true if four_equal?(row) }
 
     # check vertical (col) wins
-    @board.transpose.each { |col| return true if all_equal?(col) }
+    @board.transpose.each { |col| return true if four_equal?(col) }
 
     # check major diagonal wins
-      p major_diagonals = major_diagonalize
+    major_diagonals = major_diagonalize
 
 
     false
   end
 
   # Iterate over all consecutive 4-tuple combinations in array. # Return true and break search if 4 consecutive values are equal
-  def all_equal?(array)
+  def four_equal?(array)
     array.each_cons(4) do |a, b, c, d|
       # important to test that all values are not the default blank value
       return true if a == b && b == c && c == d && a != ' '
