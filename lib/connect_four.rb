@@ -66,7 +66,7 @@ class ConnectFourGame
     end
   end
 
-  # Is it easy to read this method and understand what is happening?
+  # Ask for valid player input, then commit the player move
   def player_turn(player_num)
     verified_col = ''
     loop do
@@ -87,11 +87,10 @@ class ConnectFourGame
   end
 
   # Add a checker to the bottom of a valid column
-  # Assume column has already been verified by #verify_input to be within the game board and contain an empty space to add a checker
-  # Note: "top" row is index 0
+  # Assume column has already been verified by #verify_input
+  # Note: "top" row is @board[0]
   def player_move(verified_col, player_num)
     col_array = get_col(verified_col)
-
 
     # start with the end of array, the "bottom" of the column  (the "last" row)
     row = col_array.length - 1 
@@ -133,9 +132,8 @@ class ConnectFourGame
     col
   end
 
-  # return a string representation of the board
+  # Print a string representation of the board
   # TODO: have column numbers at the bottom for aid in user input
-  # TODO: cells with "nil" print with a blank space
   # TODO: try using Array#reduce here for practice
   def print_board
     output = ''
@@ -143,7 +141,7 @@ class ConnectFourGame
     puts output
   end
 
-  # return an array of all rows in a column, from top to bottom
+  # Return an array of all rows in a column, from top to bottom
   def get_col(col_num)
     @board.map { |row| row[col_num] }
   end
@@ -175,7 +173,7 @@ class ConnectFourGame
     end
   end
 
-  # return an array of all diagonals that start in the top left and go to the bottom right
+  # Return an array of all diagonals that start in the top left and go to the bottom right
   # only return diagonals that have 4 or more values
   def major_diagonalize(array = @board)
     # generate array of initial coordinates (row, col)
@@ -215,7 +213,7 @@ class ConnectFourGame
     major_diagonals.select { |diagonal| diagonal.length >= 4 }
   end
 
-  # return an array of diagonals that start in the bottom left and go to the top right, "ascending"
+  # Return an array of diagonals that start in the bottom left and go to the top right, "ascending"
   # only return diagonals that have 4 or more values
   def minor_diagonalize
     # reverse the rows only, keep the column order intact
