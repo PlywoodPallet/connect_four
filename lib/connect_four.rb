@@ -77,10 +77,14 @@ class ConnectFourGame
       puts 'Input Error!'
     end
 
-    player_move(verified_col, player_num)
+    # convert column number (1-7) to @board index (0-6)
+    verified_col_index = verified_col - 1
+
+    player_move(verified_col_index, player_num)
   end
 
   # Accept player input
+  # Note: player input is converted into an integer. non_integers are converted to "0"
   def player_input(player_num)
     puts "Player #{player_num} enter move: "
     gets.chomp.to_i
@@ -117,19 +121,25 @@ class ConnectFourGame
     @board[row][col] = checker
   end
 
-  # Input checking method. Return col if col exists and has an empty space for a checker. If col does not exist or is full of checkers, return nil
-  # TODO: return nil if input is not a number
-  def verify_input(col)
-    max_col_index = @board[0].length - 1
-    col_array = get_col(col)
+  # Input checking method.
+  # Return col if col exists and has an empty space for a checker
+  # Return nil if col does not exist
+  # Return nil if col is full of checkers
+  # Correct input is a column number between 1-7
+  def verify_input(col_num)
+    max_col_num = @board[0].length
 
-    # check if col exists on board
-    return nil if col > max_col_index
+    col_index = col_num - 1 # convert to array index
+    chosen_col_values = get_col(col_index)
 
-    # check if col is full of checkers
-    return nil if col_array.none? { |cell| cell == ' ' }
+    # check if col_num exists on board
+    # Assumption: #player_input converts input to integer. Non-integers are converted to "0" by to_i
+    return nil if col_num > max_col_num || col_num < 1
 
-    col
+    # check if col is full of checkers (does not contain the blank default value)
+    return nil if chosen_col_values.none? { |cell| cell == ' ' }
+
+    col_num
   end
 
   # Print a string representation of the board
@@ -140,10 +150,10 @@ class ConnectFourGame
   end
 
   # Label each column of the board for user input
-  # TODO: columns labeled 1 to 7 for easy input (no column 0)
+  # columns labeled 1 to 7 for easy input (no column 0)
   def print_column_label
-    num_cols = @board[0].length - 1
-    column_numbers = (0..num_cols).to_a
+    num_cols = @board[0].length
+    column_numbers = (1..num_cols).to_a
     puts(column_numbers.join('   ')) # space needed to align numbers under each column
   end
 
