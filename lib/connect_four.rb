@@ -45,7 +45,7 @@ class ConnectFourGame
   # Print who won
   def print_final_message
     toggle_active_player # need to toggle the player back to the winning player, see #turn_order
-    puts "Player #{@active_player} won!"
+    puts "Connect Four! Player #{@active_player} won"
   end
 
   # Order of each player turn
