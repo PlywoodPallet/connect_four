@@ -12,10 +12,8 @@ require 'pry-byebug'
 # First project where it was coded in small modular pieces for the purpose of developing tests
 # Red-Green-Refactor practice for most methods
 # Rspec tests helped a lot when I later had to introduce a default value in @board that wasn't nil. Helped me catch bugs across many methods without needing to find them via trial and error
-# Wasn't able to google for a satisfactory algo to find the diagonals in a 2d array, so I developed my own. 
-
+# Wasn't able to google for a satisfactory algo to find the diagonals in a 2d array, so I developed my own.
 class ConnectFourGame
-
   def initialize(row = 6, col = 7)
     # NOTE: row array goes from "top" to "bottom". Col array goes from "left" to "right"
     # Initialize default value as an empty space
@@ -128,7 +126,6 @@ class ConnectFourGame
   def verify_input(col_num)
     # player input is converted into an integer. non_integers are converted to "0"
     col_num = col_num.to_i
-    
     max_col_num = @board[0].length
 
     col_index = col_num - 1 # convert to array index
@@ -185,7 +182,8 @@ class ConnectFourGame
 
   private
   
-  # Iterate over all consecutive 4-tuple combinations in array. # Return true and break search if 4 consecutive values are equal
+  # Iterate over all consecutive 4-tuple combinations in array. # Return true and break search if 4 consecutive 
+  # values are equal
   def four_equal?(array)
     array.each_cons(4) do |a, b, c, d|
       # important to test that all values are not the default blank value
@@ -240,7 +238,4 @@ class ConnectFourGame
     reversed_board = @board.map { |row| row.reverse } 
     major_diagonalize(reversed_board)
   end
-
-
-
 end
