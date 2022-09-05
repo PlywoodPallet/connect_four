@@ -16,12 +16,14 @@ require 'pry-byebug'
 class ConnectFourGame
   def initialize(row = 6, col = 7)
     # NOTE: row array goes from "top" to "bottom". Col array goes from "left" to "right"
-    # Initialize default value as an empty space
-    @board = Array.new(row) { Array.new(col, ' ') }
+    # Initialize default value as two empty spaces
+    @blank_value = '  '
+    @board = Array.new(row) { Array.new(col, @blank_value) }
 
     @active_player = 1
-    # @player1_checker = 
-    # @player2_checker =
+
+    @player1_checker = "\u{26AB}" # filled circle
+    @player2_checker = "\u{26AA}" # unfilled circle
 
     @player1_input = nil
     @player2_input = nil
@@ -96,7 +98,7 @@ class ConnectFourGame
     # start with the end of array, the "bottom" of the column  (the "last" row)
     row = col_array.length - 1 
     until row < 0 do
-      if col_array[row] == ' '
+      if col_array[row] == @blank_value
         mark_board(row, verified_col, player_num)
         break
       end
@@ -110,9 +112,9 @@ class ConnectFourGame
     checker = ''
 
     if player_num == 1
-      checker = 'X'
+      checker = @player1_checker
     elsif player_num == 2
-      checker = 'O'
+      checker = @player2_checker
     end
     
     @board[row][col] = checker
@@ -136,7 +138,7 @@ class ConnectFourGame
     return nil if col_num > max_col_num || col_num < 1
 
     # check if col is full of checkers (does not contain the blank default value)
-    return nil if chosen_col_values.none? { |cell| cell == ' ' }
+    return nil if chosen_col_values.none? { |cell| cell == @blank_value }
 
     col_num
   end
@@ -153,7 +155,7 @@ class ConnectFourGame
   def print_column_label
     num_cols = @board[0].length
     column_numbers = (1..num_cols).to_a
-    puts(column_numbers.join('   ')) # space needed to align numbers under each column
+    puts(column_numbers.join('    ')) # space needed to align numbers under each column
   end
 
   # Return an array of all rows in a column, from top to bottom
@@ -181,13 +183,13 @@ class ConnectFourGame
   end
 
   private
-  
+
   # Iterate over all consecutive 4-tuple combinations in array. # Return true and break search if 4 consecutive 
   # values are equal
   def four_equal?(array)
     array.each_cons(4) do |a, b, c, d|
       # important to test that all values are not the default blank value
-      return true if a == b && b == c && c == d && a != ' '
+      return true if a == b && b == c && c == d && a != @blank_value
     end
   end
 
