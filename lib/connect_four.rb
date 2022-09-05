@@ -84,10 +84,9 @@ class ConnectFourGame
   end
 
   # Accept player input
-  # Note: player input is converted into an integer. non_integers are converted to "0"
   def player_input(player_num)
     puts "Player #{player_num} enter move: "
-    gets.chomp.to_i
+    gets.chomp
   end
 
   # Add a checker to the bottom of a valid column
@@ -121,12 +120,15 @@ class ConnectFourGame
     @board[row][col] = checker
   end
 
-  # Input checking method.
+  # Input checking method. Correct input is a column number between 1-7
   # Return col if col exists and has an empty space for a checker
-  # Return nil if col does not exist
+  # Return nil if input is not an integer
+  # Return nil if col does not exist (not 1-7)
   # Return nil if col is full of checkers
-  # Correct input is a column number between 1-7
   def verify_input(col_num)
+    # player input is converted into an integer. non_integers are converted to "0"
+    col_num = col_num.to_i
+    
     max_col_num = @board[0].length
 
     col_index = col_num - 1 # convert to array index
