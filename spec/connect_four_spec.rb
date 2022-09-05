@@ -2,7 +2,8 @@
 
 require_relative '../lib/connect_four.rb'
 
-# Unwritten tests
+# TODO
+# does verify_input check for full cols?
 
 describe ConnectFourGame do
 
@@ -103,7 +104,7 @@ describe ConnectFourGame do
         game_move.player_move(col, player_num)
 
         first_column = game_move.get_col(col)
-        expected_result = [' ', ' ', ' ', ' ', ' ', 'X']
+        expected_result = [game_move.blank_value, game_move.blank_value, game_move.blank_value, game_move.blank_value, game_move.blank_value, game_move.player1_checker]
 
         expect(first_column).to eq(expected_result)
       end
@@ -122,25 +123,8 @@ describe ConnectFourGame do
         game_move.player_move(col, player_num)
 
         first_column = game_move.get_col(col)
-        expected_result = [' ', ' ', ' ', ' ', 'X', 'X']
-      end
-    end
-
-    context 'When the column is full of checkers' do
-      subject(:game_move) { described_class.new }
-
-      col = 0
-      player_num = 1
-
-      before do 
-        board = game_move.instance_variable_get(:@board)
-        board_num_rows = board.length
-
-        row = 0
-        until row == board_num_rows do
-          game_move.mark_board(row, col, player_num)
-          row += 1
-        end
+        expected_result = [game_move.blank_value, game_move.blank_value, game_move.blank_value, game_move.blank_value, game_move.player1_checker, game_move.player1_checker]
+        expect(first_column).to eq(expected_result)
       end
     end
   end
