@@ -66,7 +66,6 @@ describe ConnectFourGame do
       end
     end
 
-
     # TODO: to test this correctly, I should fill the entire board
     # with a draw game
     context 'when there no four checkers in a row' do
@@ -92,7 +91,6 @@ describe ConnectFourGame do
       end
     end
   end
-
 
   describe "#player_move" do
     context 'When the column is empty' do
@@ -129,7 +127,6 @@ describe ConnectFourGame do
     end
   end
 
-
   # Test a basic version of this method without error checking
   describe '#mark_board' do
     subject(:game_mark) { described_class.new }
@@ -158,7 +155,7 @@ describe ConnectFourGame do
       expect(cell).to eq(game_mark.player2_checker)
     end
   end
-  
+
   # assume default game board, 6 row x 7 col 
   describe "#get_col" do
     subject(:game_column) { described_class.new }
@@ -176,7 +173,7 @@ describe ConnectFourGame do
       expect(first_column).to eq(expected_result)
     end
   end
-  
+
   # Purpose of this method
   # Determine if the input column number is a valid number on the board
   # Determine if the input column number has a free row to add a checker
@@ -284,8 +281,6 @@ describe ConnectFourGame do
 
         expect(active_player).to eq(1)
       end
-
     end
   end
-
 end
