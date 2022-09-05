@@ -142,15 +142,6 @@ describe ConnectFourGame do
           row += 1
         end
       end
-    
-      # mostly already tested in #verify_input tests, but need to test that a message was printed stating that the move is invalid
-      # it 'Returns error when adding player 1 checker into a full column' do
-
-      #   game_move.player_move(col, player_num)
-
-      #   error_message = 'ERROR'
-      #   expect(game_move).to receive(:puts).with(error_message)
-      # end
     end
   end
 
