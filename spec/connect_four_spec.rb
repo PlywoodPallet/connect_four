@@ -2,10 +2,13 @@
 
 require_relative '../lib/connect_four.rb'
 
+# Unwritten tests
+
 describe ConnectFourGame do
 
   # check if four checkers of one player is found
   # horizontal, vertical, diagonal (left and right)
+  # private methods also tested: #four_equal? #major_diagonalize, #minor_diagonalize
   describe "#game_over?" do
 
     context 'when four checkers are horizontal' do
@@ -277,6 +280,37 @@ describe ConnectFourGame do
     end
   end
 
+  describe '#toggle_active_player' do
+    context 'when the active player is = 1' do
+      # @active_player = 1 by default
+      subject(:game_active_player) { described_class.new }
 
+      it 'toggles active player to 2' do
+        game_active_player.toggle_active_player
+
+        active_player = game_active_player.instance_variable_get(:@active_player)
+
+        expect(active_player).to eq(2)
+      end
+
+    end
+    context 'when the active player is = 2' do
+      # @active_player = 1 by default
+      subject(:game_active_player) { described_class.new }
+
+      before do
+        game_active_player.toggle_active_player # switch to player 2
+      end
+
+      it 'toggles active player to 1' do
+        game_active_player.toggle_active_player
+
+        active_player = game_active_player.instance_variable_get(:@active_player)
+
+        expect(active_player).to eq(1)
+      end
+
+    end
+  end
 
 end
