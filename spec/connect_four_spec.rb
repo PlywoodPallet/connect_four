@@ -143,7 +143,7 @@ describe ConnectFourGame do
       board = game_mark.instance_variable_get(:@board)
       cell = board[row][col]
 
-      expect(cell).to eq('X')
+      expect(cell).to eq(game_mark.player1_checker)
     end
 
     it 'Adds player 2 checker in specific cell' do 
@@ -155,7 +155,7 @@ describe ConnectFourGame do
       board = game_mark.instance_variable_get(:@board)
       cell = board[row][col]
 
-      expect(cell).to eq('O')
+      expect(cell).to eq(game_mark.player2_checker)
     end
   end
   
@@ -171,7 +171,7 @@ describe ConnectFourGame do
       game_column.mark_board(row, col, player_num)
 
       first_column = game_column.get_col(col)
-      expected_result = ['X', ' ', ' ', ' ', ' ', ' ']
+      expected_result = [game_column.player1_checker, game_column.blank_value, game_column.blank_value, game_column.blank_value, game_column.blank_value, game_column.blank_value]
 
       expect(first_column).to eq(expected_result)
     end
