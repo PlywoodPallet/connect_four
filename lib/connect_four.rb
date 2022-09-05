@@ -183,6 +183,8 @@ class ConnectFourGame
     false
   end
 
+  private
+  
   # Iterate over all consecutive 4-tuple combinations in array. # Return true and break search if 4 consecutive values are equal
   def four_equal?(array)
     array.each_cons(4) do |a, b, c, d|
