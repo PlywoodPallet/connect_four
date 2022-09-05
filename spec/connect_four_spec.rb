@@ -203,45 +203,43 @@ describe ConnectFourGame do
   # Determine if the input column number is a valid number on the board
   # Determine if the input column number has a free row to add a checker
   describe '#verify_input' do 
-    
-
     context 'when the board is empty, returns valid input when given empty column' do
       subject(:game_verify) { described_class.new }
 
-      it 'when input is the first column (default = 0)' do
-        min_col = 0
+      it 'when input is the first column (default = 1)' do
+        min_col = 1
 
         verified_input = game_verify.verify_input(min_col)
         expect(verified_input).to eq(min_col)
       end
 
-      it 'when input is the last column (default = 6)' do
+      it 'when input is the last column (default = 7)' do
         board = game_verify.instance_variable_get(:@board)
         max_col = board[0].length - 1
 
         verified_input = game_verify.verify_input(max_col)
         expect(verified_input).to eq(max_col)
       end
-
-
     end
 
     context 'when a particular column is full' do
       subject(:game_verify) { described_class.new }
 
-      it 'returns nil when column is full' do
-        col = 0
+      it 'returns nil when input 1 and column 1 is full' do
+        col_num = 1
+        col_index = 0
+
         player_num = 1
         board = game_verify.instance_variable_get(:@board)
         board_num_rows = board.length
 
         row = 0
         until row == board_num_rows do
-          game_verify.mark_board(row, col, player_num)
+          game_verify.mark_board(row, col_index, player_num)
           row += 1
         end
 
-        verified_input = game_verify.verify_input(col)
+        verified_input = game_verify.verify_input(col_num)
         expect(verified_input).to eq(nil)
       end
     end
@@ -249,11 +247,31 @@ describe ConnectFourGame do
     context 'when given an invalid column that is off the board' do
       subject(:game_verify) { described_class.new }
 
-      it 'returns nil' do 
-        board = game_verify.instance_variable_get(:@board)
-        invalid_col = board[0].length
+      it 'user inputs 100, returns nil' do 
+        invalid_col = 100
 
         verified_input = game_verify.verify_input(invalid_col)
+        expect(verified_input).to eq(nil)
+      end
+
+      it 'user inputs -100, returns nil' do 
+        invalid_col = -100
+
+        verified_input = game_verify.verify_input(invalid_col)
+        expect(verified_input).to eq(nil)
+      end
+
+      it 'user inputs a character, returns nil' do 
+        invalid_input = 'd'
+
+        verified_input = game_verify.verify_input(invalid_input)
+        expect(verified_input).to eq(nil)
+      end
+
+      it 'user inputs a symbol, returns nil' do 
+        invalid_input = '$'
+
+        verified_input = game_verify.verify_input(invalid_input)
         expect(verified_input).to eq(nil)
       end
     end
