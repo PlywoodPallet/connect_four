@@ -5,6 +5,10 @@
 # Red-Green-Refactor practice for most methods
 # Rspec tests helped a lot when I later had to introduce a default value in @board that wasn't nil. Helped me catch bugs across many methods without needing to find them via trial and error
 # Wasn't able to google for a satisfactory algo to find the diagonals in a 2d array, so I developed my own.
+
+# Future improvements
+# Using mocks, doubles and matchers seems to make the test code more complicated, not less. Need to learn what the benefit of using this is. A direct method call on the object seems to be easier
+
 class ConnectFourGame
   attr_reader :player1_checker, :player2_checker, :blank_value
 
