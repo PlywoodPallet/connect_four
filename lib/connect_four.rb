@@ -1,13 +1,5 @@
 # lib/connect_four.rb
 
-require 'pry-byebug'
-
-# Notes
-# Connect Four board is 7 columns x 6 rows
-# Use unicode to display black or white checkers
-# use TDD-friendly game design from ruby_exercises 13-15
-# user input is only a column number (1-7)
-
 # Accomplishments
 # First project where it was coded in small modular pieces for the purpose of developing tests
 # Red-Green-Refactor practice for most methods
@@ -109,7 +101,6 @@ class ConnectFourGame
   end
 
   # Directly mark the board with player checker, without error checking
-  # TODO: Use unicode to display black or white checkers
   def mark_board(row, col, player_num)
     checker = ''
 
