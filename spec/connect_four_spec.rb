@@ -2,9 +2,6 @@
 
 require_relative '../lib/connect_four.rb'
 
-# TODO
-# does verify_input check for full cols?
-
 describe ConnectFourGame do
 
   # check if four checkers of one player is found
