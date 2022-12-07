@@ -1,6 +1,8 @@
 # Command-line Connect Four game in Ruby
 Practice with Test-Driven Development (TDD) using Ruby and Rspec
 
+Live code: https://replit.com/@Plywood/connectfour
+
 # Requirements
 - Make a 2-player Connect Four game using Ruby
 - [Project requirements](https://www.theodinproject.com/lessons/ruby-connect-four#project-tdd-connect-four)
