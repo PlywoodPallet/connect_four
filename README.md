@@ -5,6 +5,7 @@ Live code: https://replit.com/@Plywood/connectfour
 
 # Requirements
 - Make a 2-player Connect Four game using Ruby
+- Write tests first, then write code to satisfy tests, then refactor code (Red-Green-Refactor cycle)
 - [Project requirements](https://www.theodinproject.com/lessons/ruby-connect-four#project-tdd-connect-four)
 
 # Project Notes
